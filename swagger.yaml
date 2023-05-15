@@ -1,0 +1,175 @@
+openapi: 3.0.0
+info:
+  title: Montech Test API
+  description: API, Database, CRUD - Application which lets users set their top 100 movies.
+  contact:
+    name: jamesobed4@gmail.com
+    email: jamesobed4@gmail.com
+  version: '1.0'
+servers:
+  - url: https://montech-test.herokuapp.com
+    description: This is the production server
+    variables: {}
+  - url: http://localhost:3400
+    description: This is the localhost development server
+    variables: {}
+paths:
+  /api/my-top-100-movies:
+    post:
+      tags:
+        - User
+      summary: Add Movie
+      description: This is the create endpoint, which allows you to register a movie
+      operationId: AddMovie
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/addMovie'
+              example:
+                title: CREED III
+                rank: 5
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+
+    get:
+      tags:
+        - User
+      summary: Get all movies
+      description: This is the get endpoint, which allows you to get all movies
+      operationId: GetMovies
+      parameters: []
+      requestBody:
+        description: ''
+        content: {}
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+
+  /api/my-top-100-movies/{id}:
+    get:
+      tags:
+        - User
+      summary: Get a movie
+      description: This is the get endpoint, which allows you to get a movie
+      operationId: GetMovie
+      parameters:
+        - name: id
+          in: path
+          description: id of movie
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content: {}
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+
+    patch:
+      tags:
+        - User
+      summary: Update a movie
+      description: This is the update endpoint, which allows you to update a movie
+      operationId: UpdateMovie
+      parameters:
+        - name: id
+          in: path
+          description: id of movie
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/addMovie'
+              example:
+                title: CREED III
+                rank: 5
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+
+    delete:
+      tags:
+        - User
+      summary: Delete a movie
+      description: This is the delete endpoint, which allows you to delete a movie
+      operationId: DeleteMovie
+      parameters:
+        - name: id
+          in: path
+          description: id of movie
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content: {}
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content: {}
+      deprecated: false
+      security: []
+      
+
+components:
+  schemas:
+    addMovie:
+      title: addMovie
+      required:
+        - title
+        - rank
+      type: object
+      properties:
+        title:
+          type: string
+        rank:
+          type: number
+      example:
+        title: CREED III
+        rank: 5
+
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Auth
+    description: 'User interaction create token'
+  - name: User
+    description: 'Token needed in this section'
+  - name: Admin
+    description: ''
