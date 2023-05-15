@@ -7,7 +7,7 @@ info:
     email: jamesobed4@gmail.com
   version: '1.0'
 servers:
-  - url: https://montech-test.herokuapp.com
+  - url: https://jamestop100movies.onrender.com
     description: This is the production server
     variables: {}
   - url: http://localhost:3400

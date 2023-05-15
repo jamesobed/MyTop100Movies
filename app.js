@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const swaggerUi =require( "swagger-ui-express");
 const yamljs = require("yamljs");
 const swagger_ui_express = (require("swagger-ui-express"));
+const cors = require("cors");
 
 
 
@@ -23,7 +24,7 @@ mongoose.connect(process.env.DBURL, {
 
 
 app.use(express.json());
-// app.use("/swagger-doc", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use(cors());
 
 app.use('/api/my-top-100-movies', movieRoutes);
 app.use(
